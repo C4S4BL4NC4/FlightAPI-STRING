@@ -17,5 +17,19 @@ const flights =
 // Display OG string
 console.log(flights);
 
-const newArray = flights.split(";");
+let newArray = flights.split("+");
 console.log(newArray);
+
+for (let i = 0; i < newArray.length; i++) {
+  let [state, fromA, toA, fTime] = newArray[i].split(";");
+  state = state.slice(1).replaceAll("_", " ");
+  fromA = fromA.slice(0, 3).toUpperCase();
+  toA = toA.slice(0, 3).toUpperCase();
+  fTime = fTime.replace(":", "h");
+
+  console.log(
+    `${state[2] === "l" ? "‼️" : "⌚"}${
+      state.endsWith("e") ? "🛫" : "🛬"
+    } ${state} from ${fromA} to ${toA} (${fTime})`
+  );
+}
